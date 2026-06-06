@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    int findKRotation(vector<int> &arr) 
+    {
+        int str=0;
+        int end=arr.size()-1;
+        int mid;
+        while(str<=end)
+        {
+            if(arr[str]<=arr[end])
+            return str;
+            mid=(str+end)/2;
+            if(arr[mid]>=arr[end])
+            str=mid+1;
+            else
+            end=mid;
+        }
+    
+return str;
+
+    }
+};
