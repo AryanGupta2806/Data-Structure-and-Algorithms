@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int splitArray(vector<int>& nums, int k) 
+    {
+        int sum=0;
+        int max=0;
+        int ans=-1;
+        for(int i=0;i<nums.size();i++)
+        {
+             sum+=nums[i];
+            if(nums[i]>max)
+            max=nums[i];
+        }
+        int low=max;
+        int high=sum;
+        while(low<=high)
+        {
+             int mid = low + (high - low)/2;
+             if(check(nums,k,mid))
+             {
+                ans=mid;
+                high=mid-1;
+
+             }
+             else
+             low=mid+1;
+        }
+        return ans;
+    }
+    bool check(vector<int>& nums, int k,int chk)
+    {
+        int count=1;
+        int currsum=0;
+      for(int i=0;i<nums.size();i++)
+        {
+            if(currsum+nums[i]>chk)
+            {
+                count++;
+                currsum=nums[i];
+            }
+            else
+            currsum+=nums[i];
+        } 
+        return count<=k;
+    }
+};
