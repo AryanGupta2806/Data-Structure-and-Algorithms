@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<int> rowAndMaximumOnes(vector<vector<int>>& mat)
+    {
+        vector<int> ansfinal;
+        
+        int row = 0;
+        int max = 0;
+
+        for(int i = 0; i < mat.size(); i++)
+        {
+            int low = 0;
+            int high = mat[i].size() - 1;
+            int first = mat[i].size();
+           sort(mat[i].begin(),mat[i].end());
+            while(low <= high)
+            {
+                int mid = low + (high-low)/2;
+
+                if(mat[i][mid] == 1)
+                {
+                    first = mid;
+                    high = mid - 1;
+                }
+                else
+                {
+                low = mid + 1;
+                }
+            }
+
+            int count = mat[i].size() - first;
+
+            if(count > max)
+            {
+                max = count;
+                row = i;
+            }
+        }
+
+        ansfinal.push_back(row);
+        ansfinal.push_back(max);
+
+        return ansfinal;
+    }
+};
