@@ -1,0 +1,10 @@
+class Solution {
+  public:
+    Node *insertAtFront(Node *head, int x) {
+        Node* abc=new Node(x);
+        
+        abc->next=head;
+        head=abc;
+        return head;
+    }
+};
