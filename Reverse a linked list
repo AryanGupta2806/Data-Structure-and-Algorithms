@@ -1,0 +1,32 @@
+/*
+class Node {
+ public:
+    int data ;
+    Node *next ;
+
+    Node(int x) {
+        data = x ;
+        next = nullptr ;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* reverseList(Node* head) 
+    {
+        Node* prev=NULL;
+          Node* agla;
+           Node* curr=head;
+           while(curr!=NULL)
+           {
+               agla=curr->next;
+               curr->next=prev;
+               prev=curr;
+               curr=agla;
+               
+           }
+           return prev;
+        
+    }
+}; 
