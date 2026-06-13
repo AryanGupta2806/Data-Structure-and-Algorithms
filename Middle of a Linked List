@@ -1,0 +1,41 @@
+/*
+class Node {
+    int data;
+    Node* next;
+
+    Node(int x){
+        data = x;
+        next = nullptr;
+    }
+
+}; */
+
+class Solution {
+  public:
+    int getMiddle(Node* head)
+    {
+        
+    int count=0;
+    Node* abc=head;
+    
+     
+     while(abc!=NULL)
+     {
+         count++;
+         abc=abc->next;
+     }
+     
+     abc=head;
+     int mid;
+ mid=count/2+1;
+     count=1;
+     while(abc!=NULL)
+     {
+         if(count==mid)
+         return abc->data;
+         count++;
+         abc=abc->next;
+     }
+    }
+    
+};
