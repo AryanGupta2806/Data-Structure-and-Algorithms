@@ -1,0 +1,35 @@
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) 
+    {
+       ListNode* abc= head;
+      int count=1;
+       while(abc!=NULL && abc->next!=NULL)
+       {
+        count++;
+        abc=abc->next;
+       }
+       if(count==1)
+       {
+        head=NULL;
+        return head;
+       }
+       int mid;
+       mid=count/2 +1;
+       int chk=1;
+       cout<<mid;
+       abc=head;
+       while(abc!=NULL && abc->next!=NULL)
+       {
+        if(chk==mid-1)
+        {
+            abc->next=abc->next->next;
+            break;
+        }
+        abc=abc->next;
+        chk++;
+       }
+       return head;
+
+    }
+};
