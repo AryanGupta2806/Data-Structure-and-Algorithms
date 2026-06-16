@@ -1,0 +1,50 @@
+/* Node is defined as
+  class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+    Node* segregate(Node* head) {
+     Node* abc=head;
+     int cnt0=0;
+      int cnt1=0;
+       int cnt2=0;
+       while(abc!=NULL)
+       {
+           if(abc->data==0)
+           cnt0++;
+           else if(abc->data==1)
+           cnt1++;
+           else if(abc->data==2)
+           cnt2++;
+           abc=abc->next;
+       }
+       abc=head;
+       for(int i=1;i<=cnt0;i++)
+       {
+           abc->data=0;
+           abc=abc->next;
+       }
+       for(int i=1;i<=cnt1;i++)
+       {
+           abc->data=1;
+           abc=abc->next;
+       }
+       for(int i=1;i<=cnt2;i++)
+       {
+           abc->data=2;
+           abc=abc->next;
+       }
+       return head;
+       
+       
+    }
+};
