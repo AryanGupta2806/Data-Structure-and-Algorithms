@@ -1,0 +1,46 @@
+class Solution {
+  public:
+    Node* addOne(Node* head) {
+        
+        head = reverse(head);
+
+        Node* curr = head;
+        int carry = 1;
+
+        while(curr!= NULL && carry)
+        {
+            int sum = curr->data + carry;
+            
+            curr->data=sum%10;
+            carry = sum/10;
+
+            if(curr->next==NULL&&carry)
+            {
+                curr->next=new Node(0);
+            }
+
+            curr=curr->next;
+        }
+
+        head=reverse(head);
+
+        return head;
+    }
+
+
+    Node* reverse(Node* head)
+    {
+        Node* prev = NULL;
+        Node* curr = head;
+
+        while(curr != NULL)
+        {
+            Node* agla = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = agla;
+        }
+
+        return prev;
+    }
+};
