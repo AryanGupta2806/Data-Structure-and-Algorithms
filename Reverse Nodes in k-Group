@@ -1,0 +1,60 @@
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) 
+    { 
+        int count=0;
+      ListNode* abc=head;
+      ListNode* curr=head;
+       ListNode* newhead=NULL;
+      ListNode* pichla=NULL;
+       if(head == NULL || head->next == NULL)
+       return head;
+
+     while(abc!=NULL)
+     {
+         count++;
+         abc=abc->next;
+     }
+     int times=count/k;
+     abc=head;
+     for(int i=1;i<=times;i++)
+     {
+         ListNode* temphead=curr;
+          ListNode* kth=curr;
+        for(int j=1;j<k;j++)
+        {
+           kth=kth->next;
+        }
+        ListNode* part2 = kth->next;
+       
+        kth->next=NULL;
+        ListNode* revhead= reverse(temphead);
+       if(newhead==NULL)
+       newhead=revhead;
+       if(pichla!=NULL)
+       pichla->next=revhead;
+       pichla=temphead;
+       curr=part2;
+
+       
+     }
+     pichla->next=curr;
+     return newhead;
+               
+    }
+    ListNode* reverse(ListNode* head)
+    {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        while(curr != NULL)
+        {
+            ListNode* agla = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = agla;
+        }
+
+        return prev;
+    }
+};
