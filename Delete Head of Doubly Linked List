@@ -1,0 +1,11 @@
+Node *deleteHead(Node *head) {
+    Node* abc=head;
+   
+    if(abc->next!=NULL)
+  
+    head=abc->next;
+    head->prev=NULL;
+   
+    return head;
+    
+}
