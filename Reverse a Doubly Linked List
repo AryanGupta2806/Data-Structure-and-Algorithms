@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    Node *reverse(Node *head) 
+    {
+        Node* temp=new Node(0);
+         Node* abc=head;
+         Node* pre=NULL;
+         Node* agla;
+         
+         while(abc!=NULL)
+         {
+             agla=abc->next;
+             abc->next=pre;
+             pre=abc;
+             abc->prev=agla;
+             abc=agla;
+          
+         }
+        
+         
+         return pre; 
+    }
+};
