@@ -1,0 +1,47 @@
+class Solution {
+  public:
+
+   
+    Node* deleteAllOccurOfX(Node* head, int x)
+    {
+            
+      if(head==NULL)
+        return head;
+  Node* pichla=NULL;
+  Node* abc=head;
+  Node* agla;
+  while(abc!=NULL)
+  {
+      int i=0;
+      agla=abc->next;
+      
+      if(abc->data==x)
+      {
+          i=1;
+          if(pichla==NULL && agla==NULL )
+          {
+              return NULL;
+          }
+         else if(pichla==NULL)
+          {
+          head=agla;
+          agla->prev=NULL;
+          }
+          else if(agla==NULL)
+          {
+              pichla->next=NULL;
+          }
+          else
+          {
+          pichla->next=agla;
+          agla->prev=pichla;
+          }
+      }
+      if(i==0)
+      pichla=abc;
+      abc=abc->next;
+  }
+  return head;
+        
+    }
+};
