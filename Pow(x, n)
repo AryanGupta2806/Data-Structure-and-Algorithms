@@ -1,0 +1,29 @@
+class Solution {
+public:
+    double myPow(double x, int n) 
+    {
+        long long l=n;
+        if(l<0)
+        {
+            x=1/x;
+            l=-l;
+        }
+       
+        
+        return kaku(x,l);
+
+    }
+    double kaku(double x,long long n)
+    {
+        if (n == 0) 
+        return 1.0;
+
+
+        if(n%2==0)
+        return kaku(x*x,n/2);
+        else
+        return x*kaku(x*x,(n-1)/2);
+
+    }
+
+};
