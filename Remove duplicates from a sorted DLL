@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    Node* removeDuplicates(Node* headRef) 
+    {
+        
+      if(headRef==NULL || headRef->next==NULL)
+        return headRef;
+  Node* pichla=NULL;
+  Node* abc=headRef;
+  Node* agla;
+  while(abc!=NULL && abc->next!=NULL)
+  {
+      int i=0;
+      agla=abc->next;
+      if(agla!=NULL)
+      if(agla->data==abc->data)
+      {i=1;
+          if(pichla==NULL)
+          {
+          headRef=agla;
+          agla->prev=NULL;
+          }
+          else
+          {
+          pichla->next=agla;
+          agla->prev=pichla;
+          }
+      }
+      if(i==0)
+      pichla=abc;
+      abc=abc->next;
+  }
+  return headRef;
+    }
+};
