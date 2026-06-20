@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    bool solve(vector<int>& arr, int index, int sum, int k)
+    {
+         if(sum == k)
+    return true;
+
+   if(index == arr.size() || sum>k)
+            return false;
+  
+         bool take=solve(arr,index+1,sum+arr[index],k);
+         bool notake=solve(arr,index+1,sum,k);
+         
+         return take || notake;
+    }
+    bool checkSubsequenceSum(vector<int>& arr, int k) 
+    {
+        return solve(arr, 0, 0, k);
+    }
+   
+};
