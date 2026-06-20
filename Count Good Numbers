@@ -1,0 +1,26 @@
+class Solution {
+public:
+long long MOD=1e9+7;
+    int countGoodNumbers(long long n) 
+    {
+        long long evenplc=(n+1)/2;
+        long long oddplc=n/2;
+        long long eveposs=chk(5,evenplc);
+       long long oddposs=chk(4,oddplc);
+        return  (eveposs*oddposs)%MOD;
+
+
+    }
+   long long chk(long long x,long long p)
+    {
+        if(p==0)
+        return 1;
+        x=x%MOD;
+        if(p%2==0)
+        return chk(x*x,p/2)%MOD;
+        else
+        return (x*chk(x*x,(p-1)/2))%MOD;
+         
+
+    }
+};
