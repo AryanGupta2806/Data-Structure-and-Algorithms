@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    string reverseString(string& s) 
+    {
+        string str=s;
+        int l=0;
+        int r=s.length()-1;
+        return rev(str,l,r);
+        
+        
+    }
+    string rev(string& abc,int lef,int rig)
+    {
+        if(lef>=rig)
+        return abc;
+        swap(abc[lef],abc[rig]);
+        rev(abc,lef+1,rig-1);
+        return abc;
+        
+    }
+    
+};
