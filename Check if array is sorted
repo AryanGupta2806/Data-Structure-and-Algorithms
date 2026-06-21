@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    bool isSorted(vector<int>& arr) {
+        
+        int a=arr.size()-1;
+        return chk(arr,a);
+    }
+    bool chk(vector<int>& ar,int i)
+    {
+        if(i==0)
+        return true;
+        if(ar[i]<ar[i-1])
+        return false;
+        chk(ar,i-1);
+        
+    }
+};
