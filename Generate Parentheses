@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string>fin={};
+        chk(n,"",0,0,fin);
+        return fin;
+    }
+    void  chk(int n,string a,int open,int close,vector<string>&ans)
+      {
+        if(a.length()==n*2)
+        {
+         ans.push_back(a);
+         return;
+        }
+         if(open<n)
+         chk(n,a+"(",open+1,close,ans);
+         if(open>close)
+        chk(n,a+")",open,close+1,ans);
+      }
+};
