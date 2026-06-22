@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    vector<string> powerSet(string &s) 
+    {
+        vector<string>fin={};
+        chk(s,"",0,fin);
+        return fin;
+       
+    }
+    void chk(string &abc,string curr,int i,vector<string>&ans)
+    {
+        if(i==abc.length())
+        {
+            ans.push_back(curr);
+            return;
+        }
+        chk(abc,curr+abc[i],i+1,ans);
+        chk(abc,curr,i+1,ans);
+        
+    }
+};
