@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    bool isPalindrome(vector<int> &arr) {
+     int n=arr.size()-1;
+     chk(arr,0,n);
+    }
+    bool chk(vector<int> &abc,int l,int r)
+    {
+        if(r<=l)
+        return true;
+        if(abc[l]!=abc[r])
+        return false;
+        chk(abc,l+1,r-1);
+    }
+};
