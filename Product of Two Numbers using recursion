@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int product(int x, int y) {
+        if(x>y)
+         return fnk(x,y);
+         else
+         return fnk(y,x);
+    }
+    int fnk(int a,int b)
+    {
+        if(b<0)
+        fnk(a,-b);
+        if(b==0)
+        return 0;
+        return a+fnk(a,b-1);
+    }
+};
