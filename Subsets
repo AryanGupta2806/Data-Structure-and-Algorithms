@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>fin={};
+        chk(nums,0,{},fin);
+        return fin;
+    } 
+    void chk(vector<int>& arr,int i,vector<int>curr,vector<vector<int>>& ans)
+    {
+        if(i==arr.size())
+        {
+            ans.push_back(curr);
+            return;
+        }
+        curr.push_back(arr[i]);
+        chk(arr,i+1,curr,ans);
+        curr.pop_back();
+        chk(arr,i+1,curr,ans);
+    }
+
+
+};
