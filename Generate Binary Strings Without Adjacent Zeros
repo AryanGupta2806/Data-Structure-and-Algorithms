@@ -1,0 +1,20 @@
+class Solution
+{
+public:
+    vector<string> validStrings(int n) {
+        vector<string>fin={};
+        chk(n,fin,0,"");
+        return fin;
+    }
+   void chk(int x,vector<string>&ans,int i,string curr)
+    {
+        if(i==x)
+          {
+            ans.push_back(curr);
+            return;
+          }   
+        if (curr.empty() || curr.back() == '1') 
+        chk(x, ans, i + 1, curr + "0");
+        chk(x,ans,i+1,curr+"1");
+    }
+};
