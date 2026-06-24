@@ -1,0 +1,28 @@
+class Solution {
+public:.
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
+    {
+           vector<vector<int>>fin;
+        chk(candidates,target,0,{},fin,0);
+        return fin;
+    }
+   void chk(vector<int>&arr, int k,int i,vector<int>curr,vector<vector<int>>&ans,int sum)
+   {
+        if(i==arr.size())
+        {
+            if(sum==k)
+            ans.push_back(curr);
+            return;
+
+        }
+        if(sum<k)
+        {
+            curr.push_back(arr[i]);
+            chk(arr,k,i,curr,ans,sum+arr[i]);
+            curr.pop_back();
+        }
+            
+            chk(arr,k,i+1,curr,ans,sum);
+           
+   }    
+};
