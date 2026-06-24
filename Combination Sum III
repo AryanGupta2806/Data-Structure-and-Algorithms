@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> combinationSum3(int k, int n) 
+    {
+         vector<vector<int>>fin;
+        chk(k,n,1,0,fin,{},0);
+        return fin;
+    }
+    void chk(int f,int target,int i,int sum,vector<vector<int>>& ans,vector<int>curr,int count)
+    {
+        if(sum==target && count==f)
+        {
+            ans.push_back(curr);
+            return;
+        }
+        if(i==10)
+        {
+            return;
+        }
+        
+        if(count>f || sum>target)
+        return;
+        curr.push_back(i);
+        cout<<i;
+        chk(f,target,i+1,sum+i,ans,curr,count+1);
+        curr.pop_back();
+         chk(f,target,i+1,sum,ans,curr,count);
+    }
+};
