@@ -1,0 +1,57 @@
+/* Structure of linked list Node
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+class myStack {
+    
+
+  public:
+  Node* head;
+    int count;
+
+    myStack() {
+      head = nullptr;
+        count = 0;
+    }
+
+    bool isEmpty() {
+        return head== nullptr;
+    }
+
+    void push(int x) {
+        Node* temp = new Node(x);
+        temp->next=head;
+        head=temp;
+        count++;
+    }
+
+    void pop() {
+        if(head == nullptr)
+            return;
+            
+              
+               head=head->next;
+              
+               count--;
+               
+    }
+
+    int peek() {
+       if(head == nullptr)
+            return -1;
+
+        return head->data;;
+    }
+
+    int size() {
+      return count;
+    }
+};
