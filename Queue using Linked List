@@ -1,0 +1,68 @@
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int new_data) {
+        data = new_data;
+        next = nullptr;
+    }
+};
+
+class myQueue {
+
+  public:
+   Node* head;
+   Node* tail; 
+   int count;
+      
+    myQueue() 
+    {
+      tail = nullptr;
+      head = nullptr;
+        count = 0;
+    }
+
+    bool isEmpty() {
+       return head== nullptr;
+    }
+
+    void enqueue(int x) 
+    {
+         Node* temp = new Node(x);
+         
+          if(head == nullptr)
+        {
+            head = temp;
+            tail = temp;
+        }
+        else
+        {
+            tail->next = temp;
+            tail = temp;
+        }
+        count++;
+        
+    }
+
+    void dequeue() {
+         if(head == nullptr)
+            return;
+            
+              
+               head=head->next;
+              
+               count--;
+    }
+
+    int getFront() {
+        if(head == nullptr)
+            return -1;
+
+        return head->data;
+    }
+
+    int size() {
+        return count;
+    }
+};
