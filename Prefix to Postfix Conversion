@@ -1,0 +1,103 @@
+class Solution {
+  public:
+    string preToPost(string &s) {
+        string ans=s;
+      string a2= pretoin(ans);
+       return intopos(a2);
+        
+    }
+    string pretoin(string pre_exp)
+    {
+     reverse(pre_exp.begin(), pre_exp.end());
+        
+        stack<string> st;
+         for(int i=0; i<pre_exp.length(); i++)
+        {
+            char c = pre_exp[i];
+             if(isalnum(c))
+            {
+                st.push(string(1,c));
+            }
+             else
+            {
+                string op1 = st.top();
+                st.pop();
+                
+                string op2 = st.top();
+                st.pop();
+                
+                string exp = "(" + op1 + c + op2 + ")";
+                
+                st.push(exp);
+            }
+        }
+        
+        return st.top();
+        
+    }
+    
+    int prec(char c)
+    {
+        if(c=='^') return 3;
+        if(c=='*' || c=='/') return 2;
+        if(c=='+' || c=='-') return 1;
+        return -1;
+    }
+    
+    string intopos(string& s) 
+    {
+        stack<char> st;
+        string ans = "";
+        
+        for(int i=0; i<s.length(); i++)
+        {
+            char c = s[i];
+            
+        
+            if((c>='a' && c<='z') || 
+               (c>='A' && c<='Z') || 
+               (c>='0' && c<='9'))
+            {
+                ans += c;
+            }
+            
+            
+            else if(c=='(')
+            {
+                st.push(c);
+            }
+          
+            else if(c==')')
+            {
+                while(!st.empty() && st.top()!='(')
+                {
+                    ans += st.top();
+                    st.pop();
+                }
+                st.pop(); 
+            }
+            
+        
+            else
+{
+    while(!st.empty() && 
+          (prec(st.top()) > prec(c) || 
+          (prec(st.top()) == prec(c) && c != '^')))
+    {
+        ans += st.top();
+        st.pop();
+    }
+
+    st.push(c);
+}
+        }
+        
+        while(!st.empty())
+        {
+            ans += st.top();
+            st.pop();
+        }
+        
+        return ans;
+    }
+};
