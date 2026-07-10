@@ -1,0 +1,42 @@
+class Solution {
+public:
+    void dfs(int node, vector<vector<int>>& adj,
+             vector<bool>& visited, vector<int>& curr)
+    {
+        visited[node] = true;
+        curr.push_back(node);
+
+        for (int nei : adj[node])
+        {
+            if (!visited[nei])
+                dfs(nei, adj, visited, curr);
+        }
+    }
+
+    vector<vector<int>> getComponents(int V, vector<vector<int>>& edges)
+    {
+        vector<vector<int>> adj(V);
+
+        for (auto &e : edges)
+        {
+            adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
+        }
+
+        vector<bool> visited(V, false);
+        vector<vector<int>> ans;
+
+        for (int i = 0; i < V; i++)
+        {
+            if (!visited[i])
+            {
+                vector<int> curr;
+                dfs(i, adj, visited, curr);
+                ans.push_back(curr);
+            }
+        }
+
+        return ans;
+    }
+};
+ 
