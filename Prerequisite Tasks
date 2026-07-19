@@ -1,0 +1,38 @@
+class Solution {
+  public:
+    bool isPossible(int n, vector<pair<int, int>>& pre) {
+        
+        vector<vector<int>> adj(n);
+        vector<int> indegree(n, 0);
+
+        for (auto &p : pre)
+        {
+            int u = p.second;
+            int v = p.first;
+            adj[u].push_back(v);
+            indegree[v]++;
+        }
+        queue<int> q;
+        for (int i = 0; i < n; i++)
+        {
+            if (indegree[i] == 0)
+                q.push(i);
+        }
+        int ans=0;
+        while(!q.empty())
+        {
+            int node=q.front();
+            ans++;
+            q.pop();
+            for(auto it:adj[node])
+            {
+                indegree[it]--;
+                
+                if(indegree[it]==0)
+                q.push(it);
+            }
+        }
+        return ans==n;
+        
+    }
+};
