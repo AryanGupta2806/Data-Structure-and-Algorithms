@@ -1,0 +1,78 @@
+class Solution {
+  public:
+    string findOrder(vector<string> &words)
+    {
+        set<char> abc;
+        vector<pair<char, char>> edges;
+
+        for (int i = 0; i < words.size() - 1; i++)
+        {
+            for (char c : words[i]) abc.insert(c);
+            for (char c : words[i + 1]) abc.insert(c);
+
+            int len = min(words[i].size(), words[i + 1].size());
+
+            int j;
+            for (j = 0; j < len; j++)
+            {
+                if (words[i][j] != words[i + 1][j])
+                {
+                    edges.push_back({words[i][j], words[i + 1][j]});
+                    break;
+                }
+            }
+
+            
+            if (j == len && words[i].size() > words[i + 1].size())
+                return "";
+        }
+
+        
+        for (char c : words.back())
+            abc.insert(c);
+
+        vector<set<int>> adj(26);
+        vector<int> indegree(26, 0);
+
+       
+        for (auto &e : edges)
+        {
+            int u = e.first - 'a';
+            int v = e.second - 'a';
+
+            if (adj[u].insert(v).second)
+                indegree[v]++;
+        }
+
+        queue<int> q;
+
+        for (char c : abc)
+        {
+            if (indegree[c - 'a'] == 0)
+                q.push(c - 'a');
+        }
+
+        string ans;
+
+        while (!q.empty())
+        {
+            int node = q.front();
+            q.pop();
+
+            ans.push_back(char(node + 'a'));
+
+            for (int it : adj[node])
+            {
+                indegree[it]--;
+
+                if (indegree[it] == 0)
+                    q.push(it);
+            }
+        }
+
+        if (ans.size() == abc.size())
+            return ans;
+
+        return "";
+    }
+};
